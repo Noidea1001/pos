@@ -1,0 +1,61 @@
+{# templates/products/product_detail.html #}
+{% extends "base.html" %}
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center my-3 flex-wrap gap-2">
+
+    <div>
+      <h2 class="mb-0">{{ product.name }}</h2>
+      <small class="text-muted">Product details</small>
+    </div>
+
+    <div class="d-flex gap-2">
+      <a href="{% url 'product_update' product.id %}" class="btn btn-outline-primary btn-sm">
+        Edit
+      </a>
+
+      <a href="{% url 'product_list' %}" class="btn btn-link btn-sm">
+        Back
+      </a>
+    </div>
+
+  </div>
+
+  <hr class="heading-rule">
+
+  <!-- Excel-style with REAL lines -->
+  <div>
+
+    <div class="d-flex justify-content-between py-2 border-bottom">
+      <span class="text-muted">Category</span>
+      <span>{{ product.category.name }}</span>
+    </div>
+
+    <div class="d-flex justify-content-between py-2 border-bottom">
+      <span class="text-muted">Cost price</span>
+      <span>{{ product.cost_price }} $</span>
+    </div>
+
+    <div class="d-flex justify-content-between py-2 border-bottom">
+      <span class="text-muted">Selling price</span>
+      <span>{{ product.selling_price }} $</span>
+    </div>
+
+    <div class="d-flex justify-content-between py-2 border-bottom">
+      <span class="text-muted">Unit</span>
+      <span>{{ product.unit }}</span>
+    </div>
+
+    <div class="d-flex justify-content-between py-2">
+      <span class="text-muted">Stock</span>
+      <span>{{ product.stock }}</span>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

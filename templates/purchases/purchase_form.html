@@ -1,0 +1,30 @@
+{# templates/purchases/purchase_form.html #}
+{% extends "base.html" %}
+{% block title %}New Purchase{% endblock %}
+{% block content %}
+<div class="container">
+  <h2>New Purchase</h2>
+  <form method="post" class="form mt-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ formset.management_form }}
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr><th>Product</th><th>Quantity</th><th>Remove</th></tr>
+      </thead>
+      <tbody>
+        {% for item in formset %}
+        <tr>
+          <td>{{ item.product }}{{ item.id }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.DELETE }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {{ form.non_field_errors }}
+    <button type="submit" class="btn btn-primary">Save Purchase</button>
+    <a href="{% url 'purchase_list' %}" class="btn btn-link">Cancel</a>
+  </form>
+</div>
+{% endblock %}

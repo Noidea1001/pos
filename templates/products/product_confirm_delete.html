@@ -1,0 +1,14 @@
+{# templates/products/product_confirm_delete.html #}
+{% extends "base.html" %}
+{% block title %}Delete {{ product.name }}{% endblock %}
+{% block content %}
+<div class="container">
+  <h2 class="text-danger">Delete product {{ product.name }}?</h2>
+  <p class="text-muted">Orders and purchases that reference this product use <code>PROTECT</code>, so the delete is blocked if the product appears on any line.</p>
+  <form method="post" class="mt-3">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirm</button>
+    <a href="{% url 'product_list' %}" class="btn btn-link">Cancel</a>
+  </form>
+</div>
+{% endblock %}

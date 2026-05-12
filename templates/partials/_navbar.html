@@ -1,0 +1,65 @@
+{# templates/partials/_navbar.html #}
+{% load static %}
+ <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a class="brand" href="{% url 'dashboard_home' %}">
+      <div class="logo">IS</div>
+      <span class="app-name">Inventory System</span>
+    </a>
+
+    <ul class="links" role="list">
+      <li><a class="nav-link" href="{% url 'dashboard_home' %}">Home</a></li>
+      <li><a class="nav-link" href="{% url 'employee_list' %}">Employees</a></li>
+      <li><a class="nav-link" href="{% url 'product_list' %}">Products</a></li>
+      <li><a class="nav-link" href="{% url 'customer_list' %}">Customers</a></li>
+      <li><a class="nav-link" href="{% url 'supplier_list' %}">Suppliers</a></li>
+      <li><a class="nav-link" href="{% url 'purchase_list' %}">Purchases</a></li>
+      <li><a class="nav-link" href="{% url 'order_list' %}">Sales</a></li>
+    </ul>
+
+    <div class="actions">
+      {% if user.is_authenticated %}
+        <span class="me-2 text-white">{{ user.username }}</span>
+        <form method="post" action="{% url 'logout' %}" class="d-inline">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-danger d-none d-md-inline-block">Logout</button>
+        </form>
+      {% else %}
+        <a href="{% url 'login' %}" class="btn btn-sm btn-primary d-none d-md-inline-block">Login</a>
+      {% endif %}
+
+      <button class="menu-btn"
+              aria-label="Toggle menu"
+              aria-expanded="false"
+              aria-controls="navbar-drawer"
+              onclick="toggleDrawer(this)">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  {# Mobile drawer #}
+  <div class="drawer" id="navbar-drawer" aria-hidden="true">
+    <a class="nav-link" href="{% url 'dashboard_home' %}">Home</a>
+    <a class="nav-link" href="{% url 'employee_list' %}">Employees</a>
+    <a class="nav-link" href="{% url 'product_list' %}">Products</a>
+    <a class="nav-link" href="{% url 'customer_list' %}">Customers</a>
+    <a class="nav-link" href="{% url 'supplier_list' %}">Suppliers</a>
+    <a class="nav-link" href="{% url 'purchase_list' %}">Purchases</a>
+    <a class="nav-link" href="{% url 'order_list' %}">Sales</a>
+
+    {% if user.is_authenticated %}
+      <form method="post" action="{% url 'logout' %}" class="p-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-danger w-100">Logout</button>
+      </form>
+    {% else %}
+      <a href="{% url 'login' %}" class="btn btn-sm btn-primary mx-3 mt-2">Login</a>
+    {% endif %}
+  </div>
+
+  {# Backdrop to close drawer on outside click #}
+  <div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true" onclick="closeDrawer()"></div>

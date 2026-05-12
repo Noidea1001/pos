@@ -1,0 +1,49 @@
+{# templates/customers/customer_detail.html #}
+{% extends "base.html" %}
+{% block title %}Customer {{ customer.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center my-3">
+    <div>
+      <h2 class="mb-0">{{ customer.name }}</h2>
+      <small class="text-muted">Customer profile details</small>
+    </div>
+
+    <!-- Buttons (same as employee/product style) -->
+    <div class="d-flex gap-2">
+      <a href="{% url 'customer_update' customer.id %}"
+         class="btn btn-outline-primary btn-sm">
+        Edit
+      </a>
+
+      <a href="{% url 'customer_list' %}"
+         class="btn btn-link btn-sm">
+        Back
+      </a>
+    </div>
+  </div>
+
+  <!-- Detail Box -->
+  <div class="border rounded p-3 bg-light">
+
+    <dl class="row mb-0">
+
+      <dt class="col-sm-3">Phone</dt>
+      <dd class="col-sm-9">
+        <span class="fw-semibold">{{ customer.phone }}</span>
+      </dd>
+
+      <dt class="col-sm-3">Address</dt>
+      <dd class="col-sm-9">
+        {{ customer.address }}
+      </dd>
+
+    </dl>
+
+  </div>
+
+</div>
+{% endblock %}

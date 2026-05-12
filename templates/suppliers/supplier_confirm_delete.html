@@ -1,0 +1,13 @@
+{# templates/suppliers/supplier_confirm_delete.html #}
+{% extends "base.html" %}
+{% block title %}Delete {{ supplier.name }}{% endblock %}
+{% block content %}
+<div class="container">
+  <h2 class="text-danger">Delete supplier {{ supplier.name }}?</h2>
+  <form method="post" class="mt-3">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirm</button>
+    <a href="{% url 'supplier_list' %}" class="btn btn-link">Cancel</a>
+  </form>
+</div>
+{% endblock %}

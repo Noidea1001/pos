@@ -1,0 +1,29 @@
+{# templates/sales/order_form.html #}
+{% extends "base.html" %}
+{% block title %}New Order{% endblock %}
+{% block content %}
+<div class="container">
+  <h2>New Order</h2>
+  <form method="post" class="form mt-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <h4>Items</h4>
+    {{ formset.management_form }}
+    <table class="table">
+      <thead><tr><th>Product</th><th>Quantity</th><th>Remove</th></tr></thead>
+      <tbody>
+        {% for item_form in formset %}
+        <tr>
+          <td>{{ item_form.product }}</td>
+          <td>{{ item_form.quantity }}</td>
+          <td>{{ item_form.DELETE }}{{ item_form.id }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {{ form.non_field_errors }}
+    <button type="submit" class="btn btn-primary">Save Order</button>
+    <a href="{% url 'order_list' %}" class="btn btn-link">Cancel</a>
+  </form>
+</div>
+{% endblock %}

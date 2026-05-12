@@ -1,0 +1,145 @@
+{# templates/sales/order_report.html #}
+{% extends "base.html" %}
+{% block title %}Order Report{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+
+  <!-- Header -->
+  <div class="mb-3">
+
+    <h2 class="mb-1">Order Report</h2>
+    <small class="text-muted">
+      Sales overview and transaction summary
+    </small>
+
+  </div>
+
+  <!-- Filter Panel -->
+  <div class="border rounded p-3 mb-3 bg-light">
+
+    <form method="get" class="row g-2 align-items-end">
+
+      <div class="col-6 col-md-3">
+        <label class="form-label text-muted small">From</label>
+        <input type="date" name="from" class="form-control form-control-sm">
+      </div>
+
+      <div class="col-6 col-md-3">
+        <label class="form-label text-muted small">To</label>
+        <input type="date" name="to" class="form-control form-control-sm">
+      </div>
+
+      <div class="col-6 col-md-3">
+        <label class="form-label text-muted small">Customer ID</label>
+        <input type="number" name="customer" class="form-control form-control-sm">
+      </div>
+
+      <div class="col-6 col-md-3">
+        <label class="form-label text-muted small">Staff ID</label>
+        <input type="number" name="user" class="form-control form-control-sm">
+      </div>
+
+      <div class="col-12 text-end mt-2">
+        <button class="btn btn-primary btn-sm">
+          Apply Filter
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <!-- Report List -->
+  <div>
+
+    <!-- Header row -->
+    <div class="d-flex justify-content-between py-2 border-bottom fw-semibold text-muted small">
+
+      <div>
+        Order Info
+      </div>
+
+      <div class="text-end">
+        Amount Summary
+      </div>
+
+    </div>
+
+    {% for order in orders %}
+
+      <div class="py-3 border-bottom">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+          <!-- LEFT -->
+          <div>
+
+            <div class="fw-semibold">
+              #{{ order.id }}
+            </div>
+
+            <div class="text-muted small">
+              {{ order.created_at|date:"Y-m-d H:i" }} •
+              {{ order.customer.name }} •
+              {{ order.user.get_username }}
+            </div>
+
+          </div>
+
+          <!-- RIGHT -->
+          <div class="text-end small">
+
+            <div>
+              <span class="text-muted">Total:</span>
+              <span class="fw-semibold">{{ order.total_amount }} $</span>
+            </div>
+
+            <div>
+              <span class="text-muted">Paid:</span>
+              <span class="text-success fw-semibold">{{ order.total_paid }} $</span>
+            </div>
+
+            <div>
+              <span class="text-muted">Remain:</span>
+              <span class="text-danger fw-semibold">{{ order.total_remain }} $</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    {% empty %}
+
+      <div class="text-center text-muted py-4">
+        No orders found
+      </div>
+
+    {% endfor %}
+
+  </div>
+
+  <!-- Totals -->
+  <div class="mt-4 border-top pt-3">
+
+    <div class="d-flex justify-content-between py-1">
+      <span class="text-muted">Total Amount</span>
+      <span class="fw-semibold">{{ totals.total_amount }} $</span>
+    </div>
+
+    <div class="d-flex justify-content-between py-1">
+      <span class="text-muted">Total Paid</span>
+      <span class="fw-semibold text-success">{{ totals.total_paid }} $</span>
+    </div>
+
+    <div class="d-flex justify-content-between py-1">
+      <span class="text-muted">Total Remain</span>
+      <span class="fw-semibold text-danger">{{ totals.total_remain }} $</span>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

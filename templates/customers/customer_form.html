@@ -1,0 +1,14 @@
+{# templates/customers/customer_form.html #}
+{% extends "base.html" %}
+{% block title %}{% if form.instance.pk %}Edit{% else %}Add{% endif %} Customer{% endblock %}
+{% block content %}
+<div class="container">
+  <h2>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Customer</h2>
+  <form method="post" class="mt-4 form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{% url 'customer_list' %}" class="btn btn-link">Cancel</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{# templates/suppliers/supplier_detail.html #}
+{% extends "base.html" %}
+{% block title %}Supplier {{ supplier.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center my-3 flex-wrap gap-2">
+    <div>
+      <h2 class="mb-0">{{ supplier.name }}</h2>
+      <small class="text-muted">Supplier details</small>
+    </div>
+
+    <div class="d-flex gap-2">
+      <a href="{% url 'supplier_update' supplier.id %}"
+         class="btn btn-outline-primary btn-sm">
+        Edit
+      </a>
+
+      <a href="{% url 'supplier_list' %}"
+         class="btn btn-link btn-sm">
+        Back
+      </a>
+    </div>
+  </div>
+
+  <hr class="heading-rule">
+
+  <!-- Details -->
+  <dl class="row mb-0">
+
+    <dt class="col-sm-3">Phone</dt>
+    <dd class="col-sm-9">
+      <span class="fw-semibold">{{ supplier.phone }}</span>
+    </dd>
+
+    <dt class="col-sm-3">Address</dt>
+    <dd class="col-sm-9">
+      {{ supplier.address }}
+    </dd>
+
+  </dl>
+
+</div>
+{% endblock %}

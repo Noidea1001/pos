@@ -1,0 +1,794 @@
+
+/* ==========================================================
+   GLOBAL DESIGN SYSTEM
+   Applies to ALL templates that extend base.html
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #4f6ef7;
+    --primary-dark: #3555e6;
+    --primary-soft: rgba(79, 110, 247, 0.12);
+
+    --success: #16a34a;
+    --danger: #e11d48;
+    --warning: #f59e0b;
+    --info: #0ea5e9;
+
+    --nav-bg: #040f57e1;
+    --nav-border: rgba(255, 255, 255, 0.08);
+    --nav-link: rgba(255, 255, 255, 0.75);
+    --nav-link-hover: #ffffff;
+
+    --body-bg: #f8fafc;
+    --surface: #ffffff;
+    --surface-2: #f1f5f9;
+
+    --text: #474646;
+    --text-muted: #1a1a1a;
+    --border: #e2e8f0;
+
+    --radius: 14px;
+    --radius-sm: 10px;
+
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+    --navbar-height: 68px;
+
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ==========================================================
+   RESET
+   ========================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    background: var(--body-bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+}
+
+/* ==========================================================
+   TYPOGRAPHY
+   ========================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--text);
+    margin-top: 0;
+}
+
+p {
+    color: var(--text-muted);
+}
+
+/* ==========================================================
+   MAIN LAYOUT
+   ========================================================== */
+
+main {
+    padding: 2rem;
+}
+
+.container,
+.container-fluid {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* ==========================================================
+   NAVBAR (matches your existing HTML classes)
+   ========================================================== */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: var(--navbar-height);
+    padding: 0 1.5rem;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    position: sticky;
+    width: 100% !important;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: 0 8px 18px rgba(79, 110, 247, 0.35);
+}
+
+.app-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.2px;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 10px;
+    color: var(--nav-link);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--nav-link-hover);
+}
+
+.nav-link--active {
+    background: var(--primary-soft);
+    color: #ffffff;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+}
+
+.menu-btn {
+    display: none;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+}
+
+.menu-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Mobile drawer */
+.drawer {
+    position: sticky;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1rem;
+    z-index: 999;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    transition: height 0.3s ease;
+    overflow-y: hidden;
+}
+
+.drawer--open {
+    display: flex;
+    height: auto;
+    overflow-y: hidden;
+    padding-top: 0;
+}
+
+.drawer .nav-link{
+    color: var(--nav-link);
+}
+
+/* ==========================================================
+   CARDS
+   ========================================================== */
+
+.card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.card-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+}
+
+.display-6 {
+    font-weight: 700;
+}
+
+/* ==========================================================
+   TABLES
+   ========================================================== */
+
+.table {
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.table thead th {
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    font-weight: 600;
+}
+
+.table td,
+.table th {
+    padding: 0.9rem 1rem;
+}
+
+.table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.table tbody tr:hover {
+    background: rgba(79, 110, 247, 0.03);
+}
+
+/* ==========================================================
+   FORMS
+   ========================================================== */
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 0.7rem 0.9rem;
+    box-shadow: none;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(79, 110, 247, 0.15);
+}
+
+label,
+.form-label {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+}
+
+/* ==========================================================
+   BUTTONS
+   ========================================================== */
+
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.btn-success {
+    background: var(--success);
+    border-color: var(--success);
+}
+
+.btn-danger {
+    background: var(--danger);
+    border-color: var(--danger);
+}
+
+.btn-warning {
+    background: var(--warning);
+    border-color: var(--warning);
+}
+
+.btn-info {
+    background: var(--info);
+    border-color: var(--info);
+    color: #ffffff;
+}
+
+/* Style for links that use class="btn-link" in your templates */
+.btn-link {
+    display: inline-block;
+    background: var(--danger);
+    border: 1px solid var(--danger);
+    color: #ffffff;
+    padding: 0.55rem 1rem;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    color: #ffffff;
+    background: #be123c;
+    border-color: #be123c;
+}
+
+/* ==========================================================
+   ALERTS
+   ========================================================== */
+
+.alert {
+    border: none;
+    border-radius: 12px;
+}
+
+/* ==========================================================
+   BADGES
+   ========================================================== */
+
+.badge {
+    border-radius: 999px;
+    padding: 0.45em 0.7em;
+    font-weight: 600;
+}
+
+/* ==========================================================
+   LIST GROUP
+   ========================================================== */
+
+.list-group-item {
+    border-color: var(--border);
+}
+
+/* ==========================================================
+   PAGINATION
+   ========================================================== */
+
+.page-link {
+    border-radius: 8px;
+    margin: 0 2px;
+}
+
+/* ==========================================================
+   AUTH PAGES
+   ========================================================== */
+
+.login-container,
+.auth-container {
+    max-width: 450px;
+    margin: 4rem auto;
+}
+/* main table */
+main {
+    padding: 2rem;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.container,
+.container-fluid {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* ==========================================================
+   UTILITIES
+   ========================================================== */
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.shadow-soft {
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ==========================================================
+   DASHBOARD CARDS
+   ========================================================== */
+.card {
+    border: none;
+    border-radius: 22px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.card-body {
+    padding: 28px;
+    position: relative;
+    z-index: 2;
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.display-6 {
+    font-weight: 700;
+    font-size: 38px;
+    margin-bottom: 5px;
+}
+
+.card small {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* Floating icon */
+.card-body::after {
+    position: absolute;
+    right: 20px;
+    top: 18px;
+    font-size: 55px;
+    opacity: 0.20;
+}
+
+/* Categories */
+.row .col-md-4:nth-child(1) .card-body::after {
+    content: "📂";
+}
+
+/* Products */
+.row .col-md-4:nth-child(2) .card-body::after {
+    content: "📦";
+}
+
+/* Customers */
+.row .col-md-4:nth-child(3) .card-body::after {
+    content: "👥";
+}
+
+/* Suppliers */
+.row .col-md-4:nth-child(4) .card-body::after {
+    content: "🚚";
+}
+
+/* Orders */
+.row .col-md-4:nth-child(5) .card-body::after {
+    content: "🛒";
+}
+
+/* Purchases */
+.row .col-md-4:nth-child(6) .card-body::after {
+    content: "💳";
+}
+
+/* Gradient Colors */
+.text-bg-primary {
+    background-color: var(--surface) !important;
+    color: #000000 !important;
+}
+
+.text-bg-secondary {
+    background-color: var(--surface) !important;
+    color: #000000 !important;
+}
+
+.text-bg-success {
+    background-color: var(--surface) !important;
+    color: #000000 !important;
+}
+
+.text-bg-warning {
+    background-color: var(--surface) !important;
+    color: #000000 !important;
+}
+
+/* Welcome Header */
+.dashboard-header {
+    background: var(--nav-bg);
+    border-radius: 22px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-header p {
+    margin: 0;
+    color: #a6a4a4;
+}
+.dashboard-header h2 {
+    color: #f7f7f7;
+}
+.form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+input{
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 6px;
+}
+textarea{
+    width: 100%;      
+    min-height: 40px;    
+    max-height: 150px;   
+    resize: vertical;    
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+label{
+    margin-bottom: 6px;
+}
+/* Mobile */
+@media (max-width: 768px) {
+
+    .display-6 {
+        font-size: 30px;
+    }
+
+    .card-body {
+        padding: 22px;
+    }
+
+    .dashboard-header {
+        padding: 20px;
+    }
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 992px) {
+    .links {
+        display: none;
+    }
+
+    .menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    main {
+        padding: 1.25rem;
+    }
+}
+
+/* ==========================================================
+   MOBILE TABLE CARD VIEW
+   Add this to the bottom of static/css/style.css
+   No need to change class names or IDs
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    /* Better spacing on mobile */
+    main {
+        padding: 1rem;
+    }
+
+    /* Header layout */
+    .d-flex.justify-content-between.align-items-center {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Full width button */
+    .d-flex.justify-content-between.align-items-center .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Responsive table wrapper */
+    .table-responsive {
+        overflow: visible;
+        border: 0;
+    }
+
+    /* Hide table header */
+    .table thead {
+        display: none;
+    }
+
+    /* Convert table elements to block */
+    .table,
+    .table tbody,
+    .table tr,
+    .table td {
+        display: block;
+        width: 100%;
+    }
+
+    /* Each row becomes a card */
+    .table tbody tr {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+    }
+
+    /* Each cell becomes a label/value row */
+    .table tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem;
+        border: none;
+        border-bottom: 1px solid #e2e8f0;
+        text-align: right;
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    /* Remove last border */
+    .table tbody td:last-child {
+        border-bottom: none;
+    }
+
+    /* Show labels using data-label attribute */
+    .table tbody td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: #0f172a;
+        text-align: left;
+        flex: 1;
+    }
+
+    /* Values */
+    .table tbody td > * {
+        flex-shrink: 0;
+    }
+
+    /* Actions section */
+    .table tbody td[data-label="Actions"] {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .table tbody td[data-label="Actions"]::before {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Full width buttons in Actions */
+    .table tbody td[data-label="Actions"] .btn,
+    .table tbody td[data-label="Actions"] .btn-link,
+    .table tbody td[data-label="Actions"] a {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+
+    .table tbody td[data-label="Actions"] .btn + .btn,
+    .table tbody td[data-label="Actions"] a + a {
+        margin-top: 0.5rem;
+    }
+
+    /* Better title size */
+    h1, h2 {
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+    .action-btns {
+      width: 100%;
+      justify-content: space-between;
+    }
+    
+    .action-btns a {
+      flex: 1;
+      text-align: center;
+      font-size: 14px;
+      padding: 6px 10px;
+    }
+     .detail-dl dt {
+      width: 100%;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .detail-dl dd {
+      width: 100%;
+      margin-left: 0;
+      margin-bottom: 8px;
+    }
+    table td, table th {
+    white-space: nowrap;
+    font-size: 13px;
+  }
+
+  .table td, .table th {
+    padding: 6px;
+  }
+}

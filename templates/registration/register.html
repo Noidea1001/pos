@@ -1,0 +1,111 @@
+{# templates/registration/register.html #}
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Create account{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="auth-wrap">
+  <div class="auth-card">
+
+    <div class="auth-logo">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <line x1="19" y1="8" x2="19" y2="14"/>
+        <line x1="22" y1="11" x2="16" y2="11"/>
+      </svg>
+    </div>
+
+    <h2>Create your account</h2>
+    <p class="auth-subtitle">Get started — it only takes a minute.</p>
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      <div class="name-row">
+        <div class="field-group">
+          <label for="{{ form.first_name.id_for_label }}">First name</label>
+          <input type="text"
+                 id="{{ form.first_name.id_for_label }}"
+                 name="{{ form.first_name.html_name }}"
+                 value="{{ form.first_name.value|default:'' }}"
+                 placeholder="First name"
+                 autocomplete="given-name" />
+          {% if form.first_name.errors %}<ul class="errorlist">{% for e in form.first_name.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+        </div>
+        <div class="field-group">
+          <label for="{{ form.last_name.id_for_label }}">Last name</label>
+          <input type="text"
+                 id="{{ form.last_name.id_for_label }}"
+                 name="{{ form.last_name.html_name }}"
+                 value="{{ form.last_name.value|default:'' }}"
+                 placeholder="Last name"
+                 autocomplete="family-name" />
+          {% if form.last_name.errors %}<ul class="errorlist">{% for e in form.last_name.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="{{ form.username.id_for_label }}">Username</label>
+        <input type="text"
+               id="{{ form.username.id_for_label }}"
+               name="{{ form.username.html_name }}"
+               value="{{ form.username.value|default:'' }}"
+               placeholder="Username"
+               autocomplete="username" />
+        <p class="field-hint">Letters, digits, and @/./+/-/_ only.</p>
+        {% if form.username.errors %}<ul class="errorlist">{% for e in form.username.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+      </div>
+
+      <div class="field-group">
+        <label for="{{ form.email.id_for_label }}">Email address</label>
+        <input type="email"
+               id="{{ form.email.id_for_label }}"
+               name="{{ form.email.html_name }}"
+               value="{{ form.email.value|default:'' }}"
+               placeholder="Email"
+               autocomplete="email" />
+        {% if form.email.errors %}<ul class="errorlist">{% for e in form.email.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+      </div>
+
+      <div class="field-group">
+        <label for="{{ form.password1.id_for_label }}">Password</label>
+        <input type="password"
+               id="{{ form.password1.id_for_label }}"
+               name="{{ form.password1.html_name }}"
+               placeholder="Password"
+               autocomplete="new-password" />
+        {% if form.password1.errors %}<ul class="errorlist">{% for e in form.password1.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+      </div>
+
+      <div class="field-group">
+        <label for="{{ form.password2.id_for_label }}">Confirm password</label>
+        <input type="password"
+               id="{{ form.password2.id_for_label }}"
+               name="{{ form.password2.html_name }}"
+               placeholder="Confirm password"
+               autocomplete="new-password" />
+        {% if form.password2.errors %}<ul class="errorlist">{% for e in form.password2.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+      </div>
+
+      {% if form.non_field_errors %}
+        <div class="error-banner">{% for e in form.non_field_errors %}{{ e }}{% endfor %}</div>
+      {% endif %}
+
+      <button type="submit" class="btn-auth">Create account</button>
+
+      <p class="auth-terms">
+        By signing up you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+      </p>
+    </form>
+
+    <div class="auth-divider"><hr /><span>already have an account?</span><hr /></div>
+    <p class="auth-footer-link"><a href="{% url 'login' %}">Sign in instead →</a></p>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{# templates/registration/login.html #}
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Sign in{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="auth-wrap">
+  <div class="auth-card">
+
+    <div class="auth-logo">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+        <polyline points="10 17 15 12 10 7"/>
+        <line x1="15" y1="12" x2="3" y2="12"/>
+      </svg>
+    </div>
+
+    <h2>Welcome back</h2>
+    <p class="auth-subtitle">Sign in to your account to continue.</p>
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+      {% endif %}
+
+      {% if form.non_field_errors %}
+        <div class="error-banner">{% for e in form.non_field_errors %}{{ e }}{% endfor %}</div>
+      {% endif %}
+
+      <div class="field-group">
+        <label for="{{ form.username.id_for_label }}">Username</label>
+        <input type="text"
+               id="{{ form.username.id_for_label }}"
+               name="{{ form.username.html_name }}"
+               value="{{ form.username.value|default:'' }}"
+               placeholder="Username"
+               autocomplete="username"
+               autofocus />
+        {% if form.username.errors %}<ul class="errorlist">{% for e in form.username.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+      </div>
+
+      <div class="field-group">
+        <div class="field-row">
+          <label for="{{ form.password.id_for_label }}">Password</label>
+          <a href="{% url 'password_reset' %}">Forgot password?</a>
+        </div>
+        <input type="password"
+               id="{{ form.password.id_for_label }}"
+               name="{{ form.password.html_name }}"
+               placeholder="Your password"
+               autocomplete="current-password" />
+        {% if form.password.errors %}<ul class="errorlist">{% for e in form.password.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+      </div>
+
+      <button type="submit" class="btn-auth">Sign in</button>
+    </form>
+
+    <div class="auth-divider"><hr /><span>don't have an account?</span><hr /></div>
+    <p class="auth-footer-link"><a href="{% url 'register' %}">Create an account →</a></p>
+
+  </div>
+</div>
+
+{% endblock %}

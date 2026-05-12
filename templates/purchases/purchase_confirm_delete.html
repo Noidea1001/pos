@@ -1,0 +1,31 @@
+{# templates/purchases/purchase_confirm_delete.html #}
+{% extends "base.html" %}
+{% block title %}Delete Purchase #{{ purchase.id }}{% endblock %}
+{% block content %}
+<div class="container">
+  <h2 class="text-danger">Delete purchase #{{ purchase.id }}?</h2>
+  <p class="text-muted">Issued {{ purchase.created_at|date:"Y-m-d H:i" }} from {{ purchase.supplier.name }}.</p>
+  <div class="alert alert-warning">
+    <strong>Warning:</strong> deleting this purchase will <em>decrement</em> product stock by the quantities recorded on each line, reversing the stock increase made when the purchase was saved.
+    If any of that stock has already been sold, the decrement may push the product's <code>stock</code> value negative &mdash; review the items below before confirming.
+  </div>
+  <table class="table table-sm">
+    <thead class="table-light">
+      <tr><th>Product</th><th class="text-end">Qty to remove</th></tr>
+    </thead>
+    <tbody>
+      {% for item in purchase.items.all %}
+      <tr>
+        <td>{{ item.product.name }}</td>
+        <td class="text-end">{{ item.quantity }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <form method="post" class="mt-3">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirm delete</button>
+    <a href="{% url 'purchase_list' %}" class="btn btn-link">Cancel</a>
+  </form>
+</div>
+{% endblock %}
