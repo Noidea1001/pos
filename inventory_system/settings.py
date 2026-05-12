@@ -26,11 +26,10 @@ SECRET_KEY = 'django-insecure-b)fo23hbe0$j9eb_#subjbh2(95atk$cytn$-$&yr4*nu9cvax
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-# Production
-render_external_hostname = os.environ.get('pos-djhr.onrender.com')
-if render_external_hostname:
-    ALLOWED_HOSTS.append(render_external_hostname)
+# inventory_system/settings.py
+ALLOWED_HOSTS = ['pos-djhr.onrender.com', 'localhost', '127.0.0.1']
+
+CSRF_TRUSTED_ORIGINS = ['https://onrender.com']
 
 # Application definition
 
@@ -143,3 +142,5 @@ LOGIN_REDIRECT_URL = "dashboard_home"
 LOGOUT_REDIRECT_URL = "login"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # swap for SMTP in prod
 DEFAULT_FROM_EMAIL = "noreply@inventory.example"
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
