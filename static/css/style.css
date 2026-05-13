@@ -16,6 +16,7 @@
     --warning: #f59e0b;
     --info: #0ea5e9;
 
+    --nav-bg1: #ffffff;
     --nav-bg: #040f57e1;
     --nav-border: rgba(255, 255, 255, 0.08);
     --nav-link: rgba(255, 255, 255, 0.75);
@@ -137,7 +138,7 @@ main {
     justify-content: center;
     font-size: 0.85rem;
     font-weight: 700;
-    box-shadow: 0 8px 18px rgba(79, 110, 247, 0.35);
+    box-shadow: 0 0px 18px rgba(79, 110, 247, 0.35);
 }
 
 .app-name {
@@ -202,8 +203,8 @@ main {
 
 .menu-btn {
     display: none;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     border: none;
     border-radius: 10px;
     background: transparent;
@@ -230,6 +231,11 @@ main {
     border-bottom: 1px solid var(--nav-border);
     transition: height 0.3s ease;
     overflow-y: hidden;
+}
+
+.drawer-backdrop--visible {
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(3px);
 }
 
 .drawer--open {
@@ -434,7 +440,7 @@ label,
 
 .login-container,
 .auth-container {
-    max-width: 450px;
+    max-width: 40px;
     margin: 4rem auto;
 }
 /* main table */
@@ -515,34 +521,34 @@ main {
 }
 
 /* Categories */
-.row .col-md-4:nth-child(1) .card-body::after {
+/* .row .col-md-4:nth-child(1) .card-body::after {
     content: "📂";
-}
+} */
 
 /* Products */
-.row .col-md-4:nth-child(2) .card-body::after {
+/* .row .col-md-4:nth-child(2) .card-body::after {
     content: "📦";
-}
+} */
 
 /* Customers */
-.row .col-md-4:nth-child(3) .card-body::after {
+/* .row .col-md-4:nth-child(3) .card-body::after {
     content: "👥";
-}
+} */
 
 /* Suppliers */
-.row .col-md-4:nth-child(4) .card-body::after {
+/* .row .col-md-4:nth-child(4) .card-body::after {
     content: "🚚";
-}
+} */
 
 /* Orders */
-.row .col-md-4:nth-child(5) .card-body::after {
+/* .row .col-md-4:nth-child(5) .card-body::after {
     content: "🛒";
-}
+} */
 
 /* Purchases */
-.row .col-md-4:nth-child(6) .card-body::after {
+/* .row .col-md-4:nth-child(6) .card-body::after {
     content: "💳";
-}
+} */
 
 /* Gradient Colors */
 .text-bg-primary {
@@ -567,7 +573,7 @@ main {
 
 /* Welcome Header */
 .dashboard-header {
-    background: var(--nav-bg);
+    background: var(--nav-bg1);
     border-radius: 22px;
     padding: 25px;
     margin-bottom: 25px;
@@ -576,10 +582,10 @@ main {
 
 .dashboard-header p {
     margin: 0;
-    color: #a6a4a4;
+    color: #2e2b2b;
 }
 .dashboard-header h2 {
-    color: #f7f7f7;
+    color: #2e2b2b;
 }
 .form {
     background-color: #f9f9f9;
@@ -629,6 +635,7 @@ label{
     .links {
         display: none;
     }
+    
 
     .menu-btn {
         display: flex;
@@ -638,6 +645,35 @@ label{
 
     main {
         padding: 1.25rem;
+    }
+
+}
+@media (max-width: 576px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+    .app-name {
+        font-size: 0.875rem;
+    }
+    .nav-link {
+        font-size: 0.875rem;
+        padding: 0.35rem 0.5rem;
+    }
+    .btn {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+    .avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 0.625rem;
+    }
+    .menu-btn {
+        width: 32px;
+        height: 32px;
+    }
+    main {
+        padding: 0.75rem;
     }
 }
 
