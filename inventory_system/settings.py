@@ -24,16 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-b)fo23hbe0$j9eb_#subjbh2(95atk$cytn$-$&yr4*nu9cvax'
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 # inventory_system/settings.py
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['https://pos-cr1fyou0m-noname1010.vercel.app']
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.vercel.app',
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -78,7 +76,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'whitenoise.middleware.WhiteNoiseMiddleware',
             ],
         },
     },
