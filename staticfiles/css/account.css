@@ -1,0 +1,223 @@
+/* static/css/account.css */
+
+/* ── Shared layout ── */
+.auth-wrap {
+  min-height: 100vh;
+  background: #f5f5f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.auth-card {
+  background: #ffffff;
+  border: 1px solid #e8e8e5;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ── Logo mark ── */
+.auth-logo {
+  width: 38px;
+  height: 38px;
+  background: #e8f0fb;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.auth-logo svg {
+  width: 20px;
+  height: 20px;
+  stroke: #2563eb;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Heading & subtitle ── */
+.auth-card h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 4px;
+}
+
+.auth-subtitle {
+  font-size: 13.5px;
+  color: #6b7280;
+  margin: 0 0 1.75rem;
+  line-height: 1.55;
+}
+
+/* ── Form fields ── */
+.field-group {
+  margin-bottom: 1rem;
+}
+
+.field-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 5px;
+}
+
+.field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.field-row label {
+  margin-bottom: 0;
+}
+
+.field-row a {
+  font-size: 12px;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.field-row a:hover {
+  text-decoration: underline;
+}
+
+.field-group input[type="text"],
+.field-group input[type="email"],
+.field-group input[type="password"] {
+  width: 100%;
+  box-sizing: border-box;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 14px;
+  color: #111;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.field-group input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.field-group input::placeholder {
+  color: #9ca3af;
+}
+
+.field-hint {
+  font-size: 11.5px;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+
+/* ── Validation errors ── */
+.errorlist {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #dc2626;
+}
+
+.error-banner {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 7px;
+  padding: 10px 14px;
+  margin-bottom: 1rem;
+  font-size: 13px;
+  color: #dc2626;
+}
+
+/* ── Two-column name row (register only) ── */
+.name-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ── Submit button ── */
+.btn-auth {
+  width: 100%;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: opacity 0.15s;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.btn-auth:hover {
+  opacity: 0.82;
+}
+
+/* ── Divider ── */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 1.25rem 0 1rem;
+}
+
+.auth-divider span {
+  font-size: 12px;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.auth-divider hr {
+  flex: 1;
+  border: none;
+  border-top: 1px solid #e8e8e5;
+  margin: 0;
+}
+
+/* ── Footer link ── */
+.auth-footer-link {
+  text-align: center;
+  font-size: 13.5px;
+  color: #6b7280;
+}
+
+.auth-footer-link a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-footer-link a:hover {
+  text-decoration: underline;
+}
+
+/* ── Terms (register only) ── */
+.auth-terms {
+  font-size: 11.5px;
+  color: #9ca3af;
+  text-align: center;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+.auth-terms a {
+  color: #6b7280;
+}
